@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import Board from "../component/board/Board";
 import "./gamePage.css";
-import { createGame } from "../../domine/entities/game";
-import { playMove, restart } from "../../application/gameController";
+import { loadSavedGame, playMove, restart } from "../../application/gameController";
 
 function GamePage({darkMode,setDarkMode}) {
 
-    const [game,setGame] = useState(createGame())
+    const [game,setGame] = useState(loadSavedGame())
     const [message,setMessage] = useState("")
 
     function handleClick(index){
@@ -14,14 +13,17 @@ function GamePage({darkMode,setDarkMode}) {
       setGame(update)
     }
 
+    
+
     useEffect(() => {
 
     if (game.winner) {
       setMessage(`🎉 Player ${game.winner} wins the game!`);
     } 
-    else if (!game.winner && game.board.every(cell => cell !== null)) {
+     if (!game.winner && game.board.every(cell => cell !== null)) {
       setMessage("🤝 It's a draw!");
     }
+    
 
   }, [game]);
 
@@ -38,7 +40,7 @@ function GamePage({darkMode,setDarkMode}) {
         <Board onClick={handleClick} board={game.board} />
       </div>
       
-      <button className="restart-btn" onClick={()=>setGame(restart())}>
+      <button className="restart-btn"  onClick={()=>{setGame(restart()); localStorage.removeItem("board");}}>
   Restart
 </button>
 
@@ -49,6 +51,7 @@ function GamePage({darkMode,setDarkMode}) {
             onClick={() => {
               setGame(restart());
               setMessage("");
+              localStorage.removeItem("board")
             }}
           >
             Play Again
