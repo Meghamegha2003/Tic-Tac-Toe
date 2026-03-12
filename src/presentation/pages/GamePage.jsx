@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Board from "../component/board/Board";
 import "./gamePage.css";
 import { loadSavedGame, playMove, restart } from "../../application/gameController";
+import { makeMachineMove } from "../../domine/useCase/ai";
 
 function GamePage({darkMode,setDarkMode}) {
 
@@ -23,7 +24,10 @@ function GamePage({darkMode,setDarkMode}) {
      if (!game.winner && game.board.every(cell => cell !== null)) {
       setMessage("🤝 It's a draw!");
     }
-    
+    if (game.currentPlayer==="O") {
+      const timer = setTimeout(()=>setGame(makeMachineMove(game, playMove)),500);
+      return ()=>clearTimeout(timer);
+    }
 
   }, [game]);
 
