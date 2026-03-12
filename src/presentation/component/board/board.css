@@ -1,0 +1,15 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 10px;
+  padding: 10px;
+  background-color: transparent;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+@media (max-width: 500px) {
+  .board {
+    gap: 8px;
+  }
+}
