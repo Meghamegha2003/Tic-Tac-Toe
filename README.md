@@ -1,16 +1,69 @@
-# React + Vite
+# Tic-Tac-Toe Game (React + Clean Architecture)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modular Tic-Tac-Toe game built with **React** following **Clean Architecture principles**, including a simple `store.js` for state management and `localStorage` persistence.  
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📂 Project Structure
+```
+src
+│
+├── domain
+│ ├── entities
+│ │ └── Game.js
+│ └── usecases
+│ ├── makeMove.js
+│ ├── checkWinner.js
+│ └── resetGame.js
+│
+├── application
+│ └── GameController.js
+│
+├── infrastructure
+│ └── storage.js
+│
+├── presentation
+│ ├── components
+│ │ ├── Board.jsx
+│ │ └── Square.jsx
+│ └── pages
+│ └── GamePage.jsx
+│
+├── store.js
+└── App.jsx
 
-## React Compiler
+```
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ⚙ Features
 
-## Expanding the ESLint configuration
+- Two-player Tic-Tac-Toe game (X and O)
+- Tracks current player
+- Checks for winner and draw
+- Reset game functionality
+- Game state persists in `localStorage`
+- Follows **Clean Architecture**:
+  - **Domain**: core game logic
+  - **Application**: controller handling actions and storage
+  - **Infrastructure**: storage integration
+  - **Presentation**: React UI components
+- State managed with React Context (`store.js`)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠 Tech Stack
+
+- React 18+
+- JavaScript (ES6 modules)
+- LocalStorage for persistence
+- React Context for state management
+
+---
+
+## 🚀 Getting Started
+
+1. **Clone the repo**  
+```bash
+git clone https://github.com/Meghamegha2003/Tic-Tac-Toe.git
+
+```
