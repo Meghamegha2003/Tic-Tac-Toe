@@ -37,19 +37,46 @@ src
 
 ## ⚙ Features
 
-- Two-player Tic-Tac-Toe game (X and O)
+- **Player vs Computer Tic-Tac-Toe**
+- Player plays as **X**
+- Machine (AI) plays as **O**
 - Tracks current player
-- Checks for winner and draw
+- Automatically generates machine moves
+- Checks for **winner or draw**
 - Reset game functionality
 - Game state persists in `localStorage`
-- Follows **Clean Architecture**:
-  - **Domain**: core game logic
-  - **Application**: controller handling actions and storage
-  - **Infrastructure**: storage integration
-  - **Presentation**: React UI components
-- State managed with React Context (`store.js`)
+
+### Clean Architecture Layers
+
+- **Domain** → Core game logic and rules
+- **Application** → Controller handling game flow
+- **Infrastructure** → Storage implementation (`localStorage`)
+- **Presentation** → React UI components
+- **State Management** → React Context (`store.js`)
 
 ---
+
+## 🤖 Player vs Machine
+
+The game works as follows:
+
+1. The **player clicks a square** to place **X**.
+2. The game checks for a winner.
+3. If the game is not finished, the **machine automatically places O**.
+4. The game checks again for a winner or draw.
+
+### Game Flow
+
+```
+Player Move (X)
+↓
+Check Winner
+↓
+Machine Move (O)
+↓
+Check Winner
+
+```
 
 ## 🛠 Tech Stack
 
