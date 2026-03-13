@@ -1,49 +1,63 @@
 .square-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.square-btn {
   width: 100px;
   height: 100px;
-  background-color: #fff;
-  border: 2px solid var(--primary-color);
-  border-radius: 8px;
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--text-color);
+  perspective: 1000px;
+  margin: 8px;
+}
+
+.square-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
   cursor: pointer;
-  transition: all 0.2s ease;
+}
+
+.square-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.square-front, .square-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-transform: uppercase;
 }
 
-.square-btn:hover {
-  background-color: #f0f0f0;
-  transform: scale(1.02);
+.square-front {
+  background-color: var(--board-bg);
+  border: 2px solid var(--square-border);
 }
 
-.square-btn:active {
-  transform: scale(0.98);
+.square-back {
+  background-color: var(--board-bg);
+  border: 2px solid var(--primary-color);
+  transform: rotateY(180deg);
 }
 
-.dark .square-btn {
-  background-color: #1e1e1e;
-  color: #fff;
-  border-color: var(--primary-color);
+.text-x, .text-o {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--text-color);
 }
 
-.dark .square-btn:hover {
-  background-color: #2a2a2a;
+
+.dark .text-x {
+  color: var(--primary-color);
+}
+
+.dark .text-o {
+  color: #3b82f6; 
 }
 
 @media (max-width: 500px) {
-  .square-btn {
+  .square-container {
     width: 80px;
     height: 80px;
-    font-size: 2rem;
   }
 }

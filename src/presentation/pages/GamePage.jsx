@@ -10,6 +10,7 @@ function GamePage({darkMode,setDarkMode}) {
     const [message,setMessage] = useState("")
 
     function handleClick(index){
+      if (game.winner || game.board[index] || message) return;
       const update = playMove(game,index)
       setGame(update)
     }
@@ -40,6 +41,17 @@ function GamePage({darkMode,setDarkMode}) {
           <span className="slider"></span>
         </label>
       </div>
+
+      <div className="turn-indicator">
+      <div className={`player-card ${game.currentPlayer === 'X' ? 'active' : ''}`}>
+        <span className="player-label">Player X</span>
+      </div>
+      <div className={`player-card ${game.currentPlayer === 'O' ? 'active' : ''}`}>
+        <span className="player-label">Player O</span>
+      </div>
+    </div>
+
+
        <div className="board-wrapper">
         <Board onClick={handleClick} board={game.board} />
       </div>
